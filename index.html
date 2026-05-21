@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DISC 검사와 향기 추천</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">DISC Aroma Test</p>
+          <h1>DISC 검사 시트로 나에게 맞는 향 방향 찾기</h1>
+          <p class="hero-copy">
+            검사 시트의 24개 문항 묶음에서 가장 가까운 모습과 가장 먼 모습을
+            선택하면 적응 스타일과 자연 스타일을 계산해 아로마 블렌딩을 추천합니다.
+          </p>
+        </div>
+        <div class="hero-panel" aria-label="DISC 축 설명">
+          <div class="axis-grid">
+            <span>D / I</span>
+            <strong>능동형</strong>
+            <span>S / C</span>
+            <strong>수동형</strong>
+            <span>D / C</span>
+            <strong>과업지향</strong>
+            <span>I / S</span>
+            <strong>대인지향</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <section class="test-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Test Sheet</p>
+            <h2>DISC 검사 시트</h2>
+          </div>
+
+          <fieldset>
+            <legend>기준 환경</legend>
+            <div class="segmented" id="environmentGroup">
+              <label><input type="radio" name="environment" value="직장" checked />직장</label>
+              <label><input type="radio" name="environment" value="가정" />가정</label>
+              <label><input type="radio" name="environment" value="관계" />관계</label>
+              <label><input type="radio" name="environment" value="수업" />수업</label>
+            </div>
+          </fieldset>
+
+          <div class="test-toolbar">
+            <button type="button" class="secondary-button" id="sampleButton">예시 응답</button>
+            <button type="button" class="ghost-button" id="resetButton">초기화</button>
+          </div>
+
+          <div class="test-guide">
+            <strong id="progressText">0 / 25 완료</strong>
+            <p>각 묶음에서 나를 가장 잘 표현하는 항목은 Most, 가장 덜 표현하는 항목은 Least를 선택하세요.</p>
+          </div>
+
+          <div class="question-groups" id="questionGroups"></div>
+
+          <details class="manual-panel">
+            <summary>점수를 직접 조정하기</summary>
+            <p class="manual-note">적응 M은 높을수록 강하고, 자연 L은 원점수가 낮을수록 강하게 해석됩니다.</p>
+            <div class="score-grid" id="scoreGrid"></div>
+          </details>
+        </section>
+
+        <section class="result-panel" aria-live="polite">
+          <div class="panel-heading">
+            <p class="eyebrow">Result</p>
+            <h2>검사 결과</h2>
+          </div>
+
+          <div class="result-summary">
+            <div>
+              <span>주요 DISC</span>
+              <strong id="primaryDisc">-</strong>
+            </div>
+            <div>
+              <span>검사 진행</span>
+              <strong id="resultProgress">-</strong>
+            </div>
+            <div>
+              <span>주요 상태</span>
+              <strong id="mainStatus">응답하면 표시됩니다</strong>
+            </div>
+            <div>
+              <span>향 방향</span>
+              <strong id="scentDirection">-</strong>
+            </div>
+          </div>
+
+          <div class="chart-wrap">
+            <canvas id="discChart" width="720" height="300" aria-label="DISC 점수 그래프"></canvas>
+          </div>
+
+          <div class="result-block">
+            <h3>DISC 해석</h3>
+            <p id="discInterpretation">문항 응답을 바탕으로 DISC 경향을 요약합니다.</p>
+          </div>
+
+          <div class="result-block">
+            <h3>향기 해석</h3>
+            <p id="interpretation">적응 스타일과 자연 스타일의 차이를 기준으로 해석합니다.</p>
+          </div>
+
+          <div class="oil-section">
+            <div class="result-block">
+              <h3>추천 오일</h3>
+              <div class="chips" id="recommendedOils"></div>
+            </div>
+            <div class="result-block">
+              <h3>피해야 할 방향</h3>
+              <div class="chips muted" id="avoidOils"></div>
+            </div>
+          </div>
+
+          <div class="result-block note">
+            <h3>환경 메모</h3>
+            <p id="environmentNote">현재 선택한 환경에 맞춰 문장이 조정됩니다.</p>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
